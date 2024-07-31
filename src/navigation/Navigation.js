@@ -8,6 +8,8 @@ import SustentabilidadeScreen from '../screens/SustentabilidadeScreen';
 import EquipeScreen from '../screens/EquipeScreen';
 import SobreScreen from '../screens/SobreScreen';
 import LoginScreen from '../screens/LoginScreen';
+import RecuperacaoSenhaScreen from '../screens/RecuperacaoSenhaScreen';
+
 
 const Stack = createStackNavigator();
 
@@ -22,6 +24,7 @@ function AppNavigator() {
         <Stack.Screen name="Equipe" component={EquipeScreen} />
         <Stack.Screen name="Sobre" component={SobreScreen} />
         <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="RecuperacaoSenha" component={RecuperacaoSenhaScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
