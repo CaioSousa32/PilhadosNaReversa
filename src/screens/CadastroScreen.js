@@ -1,59 +1,102 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, CheckBox } from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialIcons'; // Biblioteca para ícones
 
-function HomeScreen() {
+function CadastroScreen({ navigation }) {
   const [username, setUsername] = useState('');
   const [cnpj, setCnpj] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [secureTextEntry, setSecureTextEntry] = useState(true); // Estado para visibilidade das senhas
+  const [termsAccepted, setTermsAccepted] = useState(false); // Estado para aceitação dos termos
+
+  const togglePasswordVisibility = () => {
+    setSecureTextEntry(!secureTextEntry); // Alterna a visibilidade das senhas
+  };
+
+  const handleRegister = () => {
+    if (termsAccepted) {
+      // Lógica para o registro
+      alert('Cadastro realizado com sucesso!');
+    } else {
+      alert('Você deve aceitar os termos e condições.');
+    }
+  };
 
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
+      <View style={styles.content}>
         <Text style={styles.title}>Cadastro</Text>
-        <Text style={styles.subtitle}>Insira os detalhes da sua conta</Text>
-      </View>
+        <Text style={styles.subTitle}>Insira os detalhes da sua conta</Text>
 
-      <TextInput
-        style={styles.input}
-        placeholder="Nome do Usuário"
-        value={username}
-        onChangeText={setUsername}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="CNPJ"
-        value={cnpj}
-        onChangeText={setCnpj}
-        keyboardType="numeric"
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Senha"
-        value={password}
-        onChangeText={setPassword}
-        secureTextEntry
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Confirmar Senha"
-        value={confirmPassword}
-        onChangeText={setConfirmPassword}
-        secureTextEntry
-      />
+        <TextInput
+          style={styles.input}
+          placeholder="Nome do Usuário"
+          value={username}
+          onChangeText={setUsername}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="CNPJ"
+          value={cnpj}
+          onChangeText={setCnpj}
+          keyboardType="numeric"
+        />
+        <View style={styles.passwordContainer}>
+          <TextInput
+            style={styles.input}
+            placeholder="Senha"
+            value={password}
+            onChangeText={setPassword}
+            secureTextEntry={secureTextEntry}
+            placeholderTextColor="#aaa"
+          />
+          <TouchableOpacity
+            style={styles.eyeButton}
+            onPress={togglePasswordVisibility}
+          >
+            <Icon
+              name={secureTextEntry ? 'visibility-off' : 'visibility'}
+              size={24}
+              color="#000"
+            />
+          </TouchableOpacity>
+        </View>
+        <View style={styles.passwordContainer}>
+          <TextInput
+            style={styles.input}
+            placeholder="Confirmar Senha"
+            value={confirmPassword}
+            onChangeText={setConfirmPassword}
+            secureTextEntry={secureTextEntry}
+            placeholderTextColor="#aaa"
+          />
+          <TouchableOpacity
+            style={styles.eyeButton}
+            onPress={togglePasswordVisibility}
+          >
+            <Icon
+              name={secureTextEntry ? 'visibility-off' : 'visibility'}
+              size={24}
+              color="#000"
+            />
+          </TouchableOpacity>
+        </View>
 
-      <TouchableOpacity style={styles.forgotPassword}>
-        <Text style={styles.forgotPasswordText}>Esqueceu a senha?</Text>
-      </TouchableOpacity>
+        <TouchableOpacity 
+          style={styles.cadastroButton} 
+          onPress={handleRegister}
+          disabled={!termsAccepted} // Desativa o botão se os termos não forem aceitos
+        >
+          <Text style={styles.cadastroButtonText}>Inscrever-se</Text>
+        </TouchableOpacity> 
 
-      <TouchableOpacity style={styles.googleButton}>
-        <Text style={styles.googleButtonText}>Login no Google</Text>
-      </TouchableOpacity>
-
-      <View style={styles.footer}>
-        <Text style={styles.footerText}>
-          Não tem uma conta? <Text style={styles.link}>Cadastre-se</Text>
-        </Text>
+        <TouchableOpacity style={styles.googleButton}>
+          <Image 
+            source={require('../../assets/google.png')} 
+            style={styles.googleButtonImage}
+          />
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -63,23 +106,31 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'flex-start', // Alinha itens à esquerda
-    padding: 16,
+    alignItems: 'center',
     backgroundColor: '#FEC0C0',
   },
-  header: {
-    width: '100%',
-    marginBottom: 24,
+
+  content: {
+    width: '80%',
   },
+
   title: {
+    fontFamily: 'Roboto-Medium',
+    color: '#091133',
     fontSize: 50,
-    fontWeight: 'bold',
-    marginBottom: 8,
+    paddingTop: 60,
+    textAlign: 'left',
+    paddingBottom: '5%',
   },
-  subtitle: {
+
+  subTitle: {
+    fontFamily: 'Poppins-Medium',
     fontSize: 16,
-    fontWeight: 'bold',
+    paddingBottom: 20,
+    textAlign: 'left',
+    paddingBottom: '12%',
   },
+
   input: {
     width: '100%',
     height: 40,
@@ -88,38 +139,62 @@ const styles = StyleSheet.create({
     marginBottom: 30,
     fontSize: 16,
     color: '#000',
+    paddingRight: 40, // Espaço para o ícone de visibilidade da senha
   },
-  forgotPassword: {
-    marginTop: 12,
-    marginBottom: 24,
+
+  passwordContainer: {
+    position: 'relative',
+    marginBottom: 30,
   },
-  forgotPasswordText: {
-    color: '#007bff',
+
+  eyeButton: {
+    position: 'absolute',
+    right: 10,
+    top: 8,
+  },
+
+  checkbox: {
+    marginRight: 10,
+  },
+
+  termsText: {
+    fontFamily: 'Poppins-Regular',
     fontSize: 16,
+    color: '#000',
   },
+
   googleButton: {
+    marginTop: 20,
+    width: '70%', // Ajusta o botão para ocupar 70% da largura do contêiner
+    height: 50, // Ajuste a altura conforme necessário
+    justifyContent: 'center', // Centraliza o conteúdo verticalmente
+    alignItems: 'center', // Alinha o conteúdo horizontalmente
+    alignSelf: 'center',
+  },
+
+  googleButtonImage: {
     width: '100%',
-    padding: 10,
-    backgroundColor: '#4285F4',
+    height: '100%',
+    resizeMode: 'contain',
+  },
+
+  cadastroButton: {
+    backgroundColor: '#C40F0F',
+    padding: 15,
     borderRadius: 5,
     alignItems: 'center',
-    marginBottom: 24,
+    justifyContent: 'center',
+    marginTop: 20,
+    width: '100%', // Ajusta a largura do botão
+    height: 50,
+    alignSelf: 'center', // Centraliza o botão horizontalmente
   },
-  googleButtonText: {
+
+  cadastroButtonText: {
     color: '#fff',
-    fontSize: 16,
-  },
-  footer: {
-    width: '100%',
-    alignItems: 'center',
-  },
-  footerText: {
-    fontSize: 16,
-  },
-  link: {
-    color: '#007bff',
-    fontWeight: 'bold',
+    fontSize: 18,
+    fontFamily: 'Poppins-Regular',
   },
 });
 
-export default HomeScreen;
+export default CadastroScreen;

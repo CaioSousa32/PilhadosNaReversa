@@ -1,9 +1,15 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialIcons'; // Adicione o MaterialIcons para ícones de visibilidade
 
 function LoginScreen({ navigation }) {
   const [cnpj, setCnpj] = useState('');
   const [password, setPassword] = useState('');
+  const [secureTextEntry, setSecureTextEntry] = useState(true); // Estado para controlar a visibilidade da senha
+
+  const togglePasswordVisibility = () => {
+    setSecureTextEntry(!secureTextEntry); // Alterna a visibilidade da senha
+  };
 
   return (
     <View style={styles.container}>
@@ -19,15 +25,27 @@ function LoginScreen({ navigation }) {
           keyboardType="numeric"
           placeholderTextColor="#aaa"
         />
-        <TextInput
-          style={styles.input}
-          placeholder="Senha"
-          value={password}
-          onChangeText={setPassword}
-          secureTextEntry={true}
-          placeholderTextColor="#aaa"
-        />
-        
+        <View style={styles.passwordContainer}>
+          <TextInput
+            style={styles.input}
+            placeholder="Senha"
+            value={password}
+            onChangeText={setPassword}
+            secureTextEntry={secureTextEntry}
+            placeholderTextColor="#aaa"
+          />
+          <TouchableOpacity
+            style={styles.eyeButton}
+            onPress={togglePasswordVisibility}
+          >
+            <Icon
+              name={secureTextEntry ? 'visibility-off' : 'visibility'}
+              size={24}
+              color="#000"
+            />
+          </TouchableOpacity>
+        </View>
+
         <TouchableOpacity onPress={() => navigation.navigate('RecuperacaoSenha')}>
           <Text style={styles.forgotPasswordText}>Esqueceu a senha?</Text>
         </TouchableOpacity>
@@ -47,7 +65,7 @@ function LoginScreen({ navigation }) {
 
         <TouchableOpacity style={styles.inscreverButton} onPress={() => navigation.navigate('Cadastro')}>
           <Text style={styles.loginButtonText}>Inscrever-se</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> 
       </View>
     </View>
   );
@@ -67,29 +85,44 @@ const styles = StyleSheet.create({
 
   title: {
     fontFamily: 'Roboto-Medium',
+    color: '#091133',
     fontSize: 50,
     paddingTop: 60,
     textAlign: 'left',
+    paddingBottom: '5%',
   },
 
   subTitle: {
     fontFamily: 'Poppins-Medium',
     fontSize: 16,
-    padding: 10,
+    paddingBottom: 20,
     textAlign: 'left',
+    paddingBottom: '12%',
   },
 
   input: {
     height: 40,
-    borderBottomColor: '#000',
+    borderBottomColor: '#816161',
     borderBottomWidth: 1,
     marginBottom: 30,
     fontSize: 16,
     color: '#000',
+    paddingRight: 40, // Espaço para o ícone de visibilidade da senha
+  },
+
+  passwordContainer: {
+    position: 'relative',
+    marginBottom: 30,
+  },
+
+  eyeButton: {
+    position: 'absolute',
+    right: 10,
+    top: 8,
   },
 
   forgotPasswordText: {
-    fontFamily: 'Poppins-Medium',
+    fontFamily: 'Poppins-Regular',
     fontSize: 16,
     color: '#000',
     textAlign: 'left',
@@ -98,10 +131,10 @@ const styles = StyleSheet.create({
 
   googleButton: {
     marginTop: 20,
-    width: '70%', // Ajusta o botão para ocupar toda a largura disponível
-    height: '8%', // Ajuste a altura conforme necessário
+    width: '70%', // Ajusta o botão para ocupar 70% da largura do contêiner
+    height: 50, // Ajuste a altura conforme necessário
     justifyContent: 'center', // Centraliza o conteúdo verticalmente
-    alignItems: 'flex-start', 
+    alignItems: 'center', // Alinha o conteúdo horizontalmente
   },
 
   googleButtonImage: {
@@ -117,8 +150,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: 20,
-    width: '100%',
-    height: '8%'
+    width: '100%', // Ajusta a largura do botão
+    height: 50,
+    alignSelf: 'center', // Centraliza o botão horizontalmente
   },
   
   inscreverButton: {
@@ -128,19 +162,19 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: 20,
-    width: '50%',
-    height: '8%'
-
+    width: '80%', // Ajusta a largura do botão
+    height: 50,
+    alignSelf: 'center', // Centraliza o botão horizontalmente
   },
 
   loginButtonText: {
     color: '#fff',
     fontSize: 18,
-    fontFamily: 'Poppins-Medium',
+    fontFamily: 'Poppins-Regular',
   },
 
   createAccountText: {
-    fontFamily: 'Poppins-Medium',
+    fontFamily: 'Poppins-Regular',
     fontSize: 16,
     color: '#000',
     textAlign: 'left',

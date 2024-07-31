@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-function HomeScreen() {
+function SobreScreen() {
   return (
     <View style={styles.container}>
       <Text>Sobre</Text>
@@ -17,4 +17,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomeScreen;
+export default SobreScreen;
