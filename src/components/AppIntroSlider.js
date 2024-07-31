@@ -1,4 +1,3 @@
-// src/components/AppIntroSlider.js
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import AppIntroSlider from 'react-native-app-intro-slider';
