@@ -8,21 +8,10 @@ function CadastroScreen({ navigation }) {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [secureTextEntry, setSecureTextEntry] = useState(true); // Estado para visibilidade das senhas
-  const [termsAccepted, setTermsAccepted] = useState(false); // Estado para aceitação dos termos
 
   const togglePasswordVisibility = () => {
     setSecureTextEntry(!secureTextEntry); // Alterna a visibilidade das senhas
   };
-
-  const handleRegister = () => {
-    if (termsAccepted) {
-      // Lógica para o registro
-      alert('Cadastro realizado com sucesso!');
-    } else {
-      alert('Você deve aceitar os termos e condições.');
-    }
-  };
-
   return (
     <View style={styles.container}>
       <View style={styles.content}>
@@ -83,11 +72,7 @@ function CadastroScreen({ navigation }) {
           </TouchableOpacity>
         </View>
 
-        <TouchableOpacity 
-          style={styles.cadastroButton} 
-          onPress={handleRegister}
-          disabled={!termsAccepted} // Desativa o botão se os termos não forem aceitos
-        >
+        <TouchableOpacity style={styles.cadastroButton}  >
           <Text style={styles.cadastroButtonText}>Inscrever-se</Text>
         </TouchableOpacity> 
 
@@ -151,16 +136,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: 10,
     top: 8,
-  },
-
-  checkbox: {
-    marginRight: 10,
-  },
-
-  termsText: {
-    fontFamily: 'Poppins-Regular',
-    fontSize: 16,
-    color: '#000',
   },
 
   googleButton: {
