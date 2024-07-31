@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity, Image } from 'react-native';
 
-function HomeScreen({ navigation }) {
+function LoginScreen({ navigation }) {
   const [cnpj, setCnpj] = useState('');
   const [password, setPassword] = useState('');
 
@@ -37,6 +37,16 @@ function HomeScreen({ navigation }) {
             source={require('../../assets/google.png')} 
             style={styles.googleButtonImage}
           />
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.loginButton} onPress={() => alert('Entrar')}>
+          <Text style={styles.loginButtonText}>Entrar</Text>
+        </TouchableOpacity>
+
+        <Text style={styles.createAccountText}>Não tem uma conta?</Text>
+
+        <TouchableOpacity style={styles.inscreverButton} onPress={() => navigation.navigate('Cadastro')}>
+          <Text style={styles.loginButtonText}>Inscrever-se</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -88,13 +98,54 @@ const styles = StyleSheet.create({
 
   googleButton: {
     marginTop: 20,
+    width: '70%', // Ajusta o botão para ocupar toda a largura disponível
+    height: '8%', // Ajuste a altura conforme necessário
+    justifyContent: 'center', // Centraliza o conteúdo verticalmente
+    alignItems: 'flex-start', 
   },
 
   googleButtonImage: {
-    width: 200, // Ajuste conforme necessário
-    height: 50, // Ajuste conforme necessário
+    width: '100%',
+    height: '100%',
     resizeMode: 'contain',
+  },
+
+  loginButton: {
+    backgroundColor: '#C40F0F',
+    padding: 15,
+    borderRadius: 5,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 20,
+    width: '100%',
+    height: '8%'
+  },
+  
+  inscreverButton: {
+    backgroundColor: '#333437',
+    padding: 15,
+    borderRadius: 5,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 20,
+    width: '50%',
+    height: '8%'
+
+  },
+
+  loginButtonText: {
+    color: '#fff',
+    fontSize: 18,
+    fontFamily: 'Poppins-Medium',
+  },
+
+  createAccountText: {
+    fontFamily: 'Poppins-Medium',
+    fontSize: 16,
+    color: '#000',
+    textAlign: 'left',
+    marginTop: 20,
   },
 });
 
-export default HomeScreen;
+export default LoginScreen;
