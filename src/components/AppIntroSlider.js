@@ -10,7 +10,9 @@ const slides = [
     titleColor: '#FFC727',
     image: require('../../assets/pilhados.png'),
     buttonText: 'Pontos de coletas',
-    buttonAction: 'Pontos'
+    buttonAction: 'Pontos',
+    buttonText2: 'Sobre',
+    button2Action: 'Sobre' // Nome da tela para onde o botão "Saiba mais" irá navegar
   },
   {
     key: '2',
@@ -18,7 +20,9 @@ const slides = [
     titleColor: '#C40F0F',
     image: require('../../assets/empresas.png'),
     buttonText: 'Cadastre-se',
-    buttonAction: 'Cadastro'
+    buttonAction: 'Cadastro',
+    buttonText2: 'Login',
+    button2Action: 'Login'
   },
   {
     key: '3',
@@ -60,6 +64,16 @@ function AppIntroSliderComponent({ navigation }) {
           </Text>
         </TouchableOpacity>
       )}
+      {item.buttonText2 && (
+        <TouchableOpacity
+          style={[styles.button2Button, { backgroundColor: '#455A64' }]}
+          onPress={() => navigation.navigate(item.button2Action)}
+        >
+          <Text style={[styles.buttonText, { color: '#fff' }]}>
+            {item.buttonText2}
+          </Text>
+        </TouchableOpacity>
+      )}
     </View>
   );
 
@@ -91,6 +105,7 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
     height: '45%',
     width: '100%',
+    alignSelf: 'center',
   },
   titleText: {
     textAlign: 'center',
@@ -99,17 +114,26 @@ const styles = StyleSheet.create({
     marginBottom: -20,
   },
   activeDot: {
+    backgroundColor: '#FFC727',
     width: 10,
   },
   button: {
     marginTop: 20,
     padding: 10,
     borderRadius: 5,
+    width: '50%',
+  },
+  button2Button: {
+    marginTop: 10,
+    padding: 10,
+    borderRadius: 5,
+    width: '50%',
   },
   buttonText: {
     color: '#fff',
     fontSize: 18,
-    fontFamily: 'Poppins-Regular'
+    fontFamily: 'Poppins-Regular',
+    textAlign: 'center',
   },
 });
 

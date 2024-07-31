@@ -7,6 +7,8 @@ import PontosScreen from '../screens/PontosScreen';
 import CadastroScreen from '../screens/CadastroScreen';
 import SustentabilidadeScreen from '../screens/SustentabilidadeScreen';
 import EquipeScreen from '../screens/EquipeScreen';
+import SobreScreen from '../screens/SobreScreen';
+import LoginScreen from '../screens/LoginScreen';
 
 const Stack = createStackNavigator();
 
@@ -19,6 +21,8 @@ function AppNavigator() {
         <Stack.Screen name="Cadastro" component={CadastroScreen} />
         <Stack.Screen name="Saiba" component={SustentabilidadeScreen} />
         <Stack.Screen name="Equipe" component={EquipeScreen} />
+        <Stack.Screen name="Sobre" component={SobreScreen} />
+        <Stack.Screen name="Login" component={LoginScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
