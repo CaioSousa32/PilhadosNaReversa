@@ -46,9 +46,11 @@ function AppIntroSliderComponent({ navigation }) {
 
   const renderSlides = ({ item }) => (
     <View style={styles.slideContainer}>
-      <Text style={[styles.titleText, { color: item.titleColor }]}>
-        {item.title}
-      </Text>
+      <View style={styles.titleContainer}>
+        <Text style={[styles.titleText, { color: item.titleColor }]}>
+          {item.title}
+        </Text>
+      </View>
       <Image
         source={item.image}
         style={styles.image}
@@ -98,32 +100,38 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
+    justifyContent: 'flex-start',
+  },
+  titleContainer: {
+    marginTop: '40%',
+    height: 50, // Define uma altura fixa para o contêiner do título
     justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 10, // Espaço entre o título e a imagem
   },
   image: {
-    resizeMode: 'cover',
+    resizeMode: 'contain',
     height: '45%',
     width: '100%',
-    alignSelf: 'center',
+    marginBottom: 10, // Espaço entre a imagem e o botão
   },
   titleText: {
-    textAlign: 'center',
     fontSize: 30,
     fontFamily: 'Poppins-Bold',
-    marginBottom: -20,
+    textAlign: 'center',
   },
   activeDot: {
     backgroundColor: '#FFC727',
     width: 10,
   },
   button: {
-    marginTop: 20,
+    marginTop: '8%',
     padding: 10,
     borderRadius: 5,
     width: '50%',
+    marginBottom: 10, // Espaço entre botões
   },
   button2Button: {
-    marginTop: 10,
     padding: 10,
     borderRadius: 5,
     width: '50%',
