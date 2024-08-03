@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, Alert } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons'; // Biblioteca para ícones
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 function CadastroScreen({ navigation }) {
   const [username, setUsername] = useState('');
@@ -8,10 +8,27 @@ function CadastroScreen({ navigation }) {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [secureTextEntry, setSecureTextEntry] = useState(true); // Estado para visibilidade das senhas
+  const [isChecked, setIsChecked] = useState(false);
 
   const togglePasswordVisibility = () => {
     setSecureTextEntry(!secureTextEntry); // Alterna a visibilidade das senhas
   };
+
+  const handleCheckboxToggle = () => {
+    setIsChecked(!isChecked);
+  };
+
+  const handleRegister = () => {
+    if (!isChecked) {
+      Alert.alert('Atenção', 'Você deve concordar com os termos de uso para prosseguir.');
+      return;
+    }
+    Alert.alert(
+      "Aviso!",
+      "Esta página ainda esta em produção e não está pronta para ser visualizada."
+    );
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.content}>
@@ -41,11 +58,8 @@ function CadastroScreen({ navigation }) {
             onChangeText={setPassword}
             secureTextEntry={secureTextEntry}
             placeholderTextColor="#816161"
-            />
-          <TouchableOpacity
-            style={styles.eyeButton}
-            onPress={togglePasswordVisibility}
-          >
+          />
+          <TouchableOpacity style={styles.eyeButton} onPress={togglePasswordVisibility}>
             <Icon
               name={secureTextEntry ? 'visibility-off' : 'visibility'}
               size={24}
@@ -61,11 +75,8 @@ function CadastroScreen({ navigation }) {
             onChangeText={setConfirmPassword}
             secureTextEntry={secureTextEntry}
             placeholderTextColor="#816161"
-            />
-          <TouchableOpacity
-            style={styles.eyeButton}
-            onPress={togglePasswordVisibility}
-          >
+          />
+          <TouchableOpacity style={styles.eyeButton} onPress={togglePasswordVisibility}>
             <Icon
               name={secureTextEntry ? 'visibility-off' : 'visibility'}
               size={24}
@@ -74,17 +85,37 @@ function CadastroScreen({ navigation }) {
           </TouchableOpacity>
         </View>
 
-        <TouchableOpacity style={styles.cadastroButton} onPress={() => Alert.alert(
-          "Aviso!",
-          "Esta página ainda esta em produção e não está pronta para ser visualizada.",)}>
-          <Text style={styles.cadastroButtonText}>Inscrever-se</Text>
-        </TouchableOpacity> 
+        <View style={styles.checkboxContainer}>
+          <TouchableOpacity onPress={handleCheckboxToggle} style={styles.checkbox}>
+            <Icon
+              name={isChecked ? 'check-box' : 'check-box-outline-blank'}
+              size={24}
+              color="#000"
+            />
+          </TouchableOpacity>
+          <Text style={styles.checkboxText}>Concordo com os termos de uso do app.</Text>
+        </View>
 
-        <TouchableOpacity style={styles.googleButton}onPress={() => Alert.alert(
-          "Aviso!",
-          "Esta página ainda esta em produção e não está pronta para ser visualizada.",)}>
-          <Image 
-            source={require('../../assets/google.png')} 
+        <TouchableOpacity
+          style={[
+            styles.cadastroButton,
+            { backgroundColor: isChecked ? '#C40F0F' : '#E16A6A' } // Cor do botão dependendo do estado do checkbox
+          ]}
+          onPress={handleRegister}
+          disabled={!isChecked} // Botão desativado se o checkbox não estiver marcado
+        >
+          <Text style={styles.cadastroButtonText}>Inscrever-se</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.googleButton}
+          onPress={() => Alert.alert(
+            "Aviso!",
+            "Esta página ainda esta em produção e não está pronta para ser visualizada."
+          )}
+        >
+          <Image
+            source={require('../../assets/google.png')}
             style={styles.googleButtonImage}
           />
         </TouchableOpacity>
@@ -130,12 +161,12 @@ const styles = StyleSheet.create({
     marginBottom: 30,
     fontSize: 16,
     color: '#000',
-    paddingRight: 40, // Espaço para o ícone de visibilidade da senha
+    paddingRight: 40,
+    marginBottom:40,
   },
 
   passwordContainer: {
     position: 'relative',
-    marginBottom: 30,
   },
 
   eyeButton: {
@@ -146,10 +177,10 @@ const styles = StyleSheet.create({
 
   googleButton: {
     marginTop: 20,
-    width: '70%', // Ajusta o botão para ocupar 70% da largura do contêiner
-    height: 50, // Ajuste a altura conforme necessário
-    justifyContent: 'center', // Centraliza o conteúdo verticalmente
-    alignItems: 'center', // Alinha o conteúdo horizontalmente
+    width: '70%',
+    height: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
     alignSelf: 'center',
   },
 
@@ -160,20 +191,36 @@ const styles = StyleSheet.create({
   },
 
   cadastroButton: {
-    backgroundColor: '#C40F0F',
     padding: 15,
     borderRadius: 5,
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: 20,
-    width: '100%', // Ajusta a largura do botão
+    width: '100%',
     height: 50,
-    alignSelf: 'center', // Centraliza o botão horizontalmente
+    alignSelf: 'center',
   },
 
   cadastroButtonText: {
     color: '#fff',
     fontSize: 18,
+    fontFamily: 'Poppins-Regular',
+  },
+
+  checkboxContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 10,
+  },
+
+  checkbox: {
+    marginRight: 5,
+    marginBottom: 5,
+  },
+
+  checkboxText: {
+    fontSize: 16,
+    color: '#000',
     fontFamily: 'Poppins-Regular',
   },
 });
