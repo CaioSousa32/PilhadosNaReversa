@@ -9,13 +9,13 @@ const slides = [
     titleColor: '#038510',
     image: require('../../assets/sustentabilidade1.png'),
     buttonText: 'Por que eu devo descartar pilhas e baterias corretamente?',
-    description:'As pilhas e baterias contém materiais como o mercúrio, chumbo, cádmio, zinco, lítio, níquel e outras substâncias químicas, e quando são descartados de forma errada, eles podem causar danos a nossa saúde.'
+    description: 'As pilhas e baterias contêm materiais como mercúrio, chumbo, cádmio, zinco, lítio, níquel e outras substâncias químicas, e quando são descartados de forma errada, podem causar danos à nossa saúde.'
   },
   {
     key: '2',
     title: 'Sustentabilidade',
     titleColor: '#038510',
-    image: require('../../assets/sustentabilidade1.png'),
+    image: require('../../assets/sustentabilidade2.png'),
     buttonText: 'O que acontece com as pilhas e baterias após serem descartadas nos pontos de coleta?',
     description: 'Após o descarte em pontos de coleta, as pilhas e baterias são enviadas para centros de reciclagem, onde são separadas e tratadas para extrair metais e outros materiais reutilizáveis. O processo ajuda a reduzir a quantidade de resíduos perigosos e permite o reaproveitamento de materiais.',
   },
@@ -23,7 +23,7 @@ const slides = [
     key: '3',
     title: 'Sustentabilidade',
     titleColor: '#038510',
-    image: require('../../assets/sustentabilidade1.png'),
+    image: require('../../assets/sustentabilidade3.png'),
     buttonText: 'Quais são os impactos ambientais do descarte incorreto de pilhas e baterias?',
     description: 'O descarte incorreto pode levar à liberação de metais pesados como mercúrio, chumbo e cádmio, que podem contaminar o solo e a água, prejudicando plantas, animais e seres humanos. Além disso, as substâncias químicas podem prejudicar o ecossistema e afetar a qualidade da água.',
   },
@@ -55,10 +55,12 @@ function SustentabilidadeScreen({ navigation }) {
         </Text>
       </View>
       
-      <Image
-        source={item.image}
-        style={styles.image}
-      />
+      <View style={styles.imageContainer}>
+        <Image
+          source={item.image}
+          style={styles.image}
+        />
+      </View>
     </View>
   );
 
@@ -96,16 +98,22 @@ const styles = StyleSheet.create({
     borderBottomColor: '#000',
     borderBottomWidth: 2,
   },
+  imageContainer: {
+    flex: 1,
+    justifyContent: 'flex-end', // Posiciona a imagem na parte inferior
+    alignItems: 'center',
+    width: '100%',
+    marginBottom: '16%'
+  },
   image: {
     resizeMode: 'contain',
-    height: '25%',
     width: '100%',
+    height: 200, // Define uma altura fixa para as imagens
   },
   titleText: {
     fontSize: 30,
     fontFamily: 'Poppins-Bold',
     textAlign: 'center',
-    
   },
   activeDot: {
     backgroundColor: '#038510',
@@ -123,18 +131,16 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontFamily: 'Poppins-Regular',
     textAlign: 'left',
-    margin:5
+    margin: 5,
   },
-
   descriptionText: {
-    marginTop: '6%',
+    marginTop: '2%',
     color: '#026A0D',
     fontSize: 20,
     fontFamily: 'Poppins-Regular',
     textAlign: 'left',
-    marginRight: 50,
-    marginLeft:50
-  }
+    marginHorizontal: 50,
+  },
 });
 
 export default SustentabilidadeScreen;

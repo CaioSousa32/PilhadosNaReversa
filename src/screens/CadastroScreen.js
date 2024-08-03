@@ -23,6 +23,7 @@ function CadastroScreen({ navigation }) {
           placeholder="Nome do Usuário"
           value={username}
           onChangeText={setUsername}
+          placeholderTextColor="#816161"
         />
         <TextInput
           style={styles.input}
@@ -30,6 +31,7 @@ function CadastroScreen({ navigation }) {
           value={cnpj}
           onChangeText={setCnpj}
           keyboardType="numeric"
+          placeholderTextColor="#816161"
         />
         <View style={styles.passwordContainer}>
           <TextInput
@@ -38,8 +40,8 @@ function CadastroScreen({ navigation }) {
             value={password}
             onChangeText={setPassword}
             secureTextEntry={secureTextEntry}
-            placeholderTextColor="#aaa"
-          />
+            placeholderTextColor="#816161"
+            />
           <TouchableOpacity
             style={styles.eyeButton}
             onPress={togglePasswordVisibility}
@@ -58,8 +60,8 @@ function CadastroScreen({ navigation }) {
             value={confirmPassword}
             onChangeText={setConfirmPassword}
             secureTextEntry={secureTextEntry}
-            placeholderTextColor="#aaa"
-          />
+            placeholderTextColor="#816161"
+            />
           <TouchableOpacity
             style={styles.eyeButton}
             onPress={togglePasswordVisibility}
@@ -123,7 +125,7 @@ const styles = StyleSheet.create({
   input: {
     width: '100%',
     height: 40,
-    borderBottomColor: '#000',
+    borderBottomColor: '#816161',
     borderBottomWidth: 1,
     marginBottom: 30,
     fontSize: 16,

@@ -23,7 +23,7 @@ function LoginScreen({ navigation }) {
           value={cnpj}
           onChangeText={setCnpj}
           keyboardType="numeric"
-          placeholderTextColor="#aaa"
+          placeholderTextColor="#816161"
         />
         <View style={styles.passwordContainer}>
           <TextInput
@@ -32,8 +32,8 @@ function LoginScreen({ navigation }) {
             value={password}
             onChangeText={setPassword}
             secureTextEntry={secureTextEntry}
-            placeholderTextColor="#aaa"
-          />
+            placeholderTextColor="#816161"
+            />
           <TouchableOpacity
             style={styles.eyeButton}
             onPress={togglePasswordVisibility}
