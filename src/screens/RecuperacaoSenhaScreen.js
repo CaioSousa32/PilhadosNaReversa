@@ -1,7 +1,14 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React, { useEffect } from 'react';
+import { View, Text, StyleSheet, Alert } from 'react-native';
 
-function RecuperacaoSenhaScreen() {
+function RecuperacaoSenhaScreen({ navigation }) {
+  useEffect(() => {
+    Alert.alert(
+      "Aviso!",
+      "Esta página ainda esta em produção e não está pronta para ser visualizada.",
+      [{ text: "OK" , onPress: () => navigation.goBack()}]
+    );
+  }, [navigation]);
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Recuperação de Senha</Text>

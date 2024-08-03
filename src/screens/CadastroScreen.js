@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, CheckBox } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, Alert } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons'; // Biblioteca para ícones
 
 function CadastroScreen({ navigation }) {
@@ -72,11 +72,15 @@ function CadastroScreen({ navigation }) {
           </TouchableOpacity>
         </View>
 
-        <TouchableOpacity style={styles.cadastroButton}  >
+        <TouchableOpacity style={styles.cadastroButton} onPress={() => Alert.alert(
+          "Aviso!",
+          "Esta página ainda esta em produção e não está pronta para ser visualizada.",)}>
           <Text style={styles.cadastroButtonText}>Inscrever-se</Text>
         </TouchableOpacity> 
 
-        <TouchableOpacity style={styles.googleButton}>
+        <TouchableOpacity style={styles.googleButton}onPress={() => Alert.alert(
+          "Aviso!",
+          "Esta página ainda esta em produção e não está pronta para ser visualizada.",)}>
           <Image 
             source={require('../../assets/google.png')} 
             style={styles.googleButtonImage}

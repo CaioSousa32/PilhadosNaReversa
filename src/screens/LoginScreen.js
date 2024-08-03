@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import React, { useState} from 'react';
+import { View, Text, TextInput, StyleSheet, TouchableOpacity, Image, Alert } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons'; // Adicione o MaterialIcons para ícones de visibilidade
 
 function LoginScreen({ navigation }) {
@@ -50,14 +50,18 @@ function LoginScreen({ navigation }) {
           <Text style={styles.forgotPasswordText}>Esqueceu a senha?</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.googleButton} onPress={() => alert('Entrar com Google')}>
+        <TouchableOpacity style={styles.googleButton} onPress={() => Alert.alert(
+          "Aviso!",
+          "Esta página ainda esta em produção e não está pronta para ser visualizada.",)}>
           <Image 
             source={require('../../assets/google.png')} 
             style={styles.googleButtonImage}
           />
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.loginButton} onPress={() => alert('Entrar')}>
+        <TouchableOpacity style={styles.loginButton} onPress={() => Alert.alert(
+          "Aviso!",
+          "Esta página ainda esta em produção e não está pronta para ser visualizada.",)}>
           <Text style={styles.loginButtonText}>Entrar</Text>
         </TouchableOpacity>
 
