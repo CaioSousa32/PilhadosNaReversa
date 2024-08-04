@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import * as SplashScreen from 'expo-splash-screen';
 import * as Font from 'expo-font';
 import AppNavigator from './src/navigation/Navigation'; // Ajuste o caminho se necessário
+import 'react-native-gesture-handler';
 
 // Prevenir o esconder automático da Splash Screen
 SplashScreen.preventAutoHideAsync();
