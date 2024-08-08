@@ -7,15 +7,15 @@ const slides = [
     key: '1',
     title: 'Sustentabilidade',
     titleColor: '#038510',
-    image: require('../../assets/sustentabilidade1.png'),
+    image: require('../../assets/image/sustentabilidade/sustentabilidade1.png'),
     buttonText: 'Por que eu devo descartar pilhas e baterias corretamente?',
-    description: 'As pilhas e baterias contêm materiais como mercúrio, chumbo, cádmio, zinco, lítio, níquel e outras substâncias químicas, e quando são descartados de forma errada, podem causar danos à nossa saúde.'
+    description: 'As pilhas e baterias contêm materiais como mercúrio, chumbo, cádmio, zinco, lítio e níquel. O descarte inadequado pode liberar essas substâncias tóxicas, que podem causar problemas de saúde, como danos neurológicos e respiratórios, e contaminar o meio ambiente, afetando solos e águas.'
   },
   {
     key: '2',
     title: 'Sustentabilidade',
     titleColor: '#038510',
-    image: require('../../assets/sustentabilidade2.png'),
+    image: require('../../assets/image/sustentabilidade/sustentabilidade2.png'),
     buttonText: 'O que acontece com as pilhas e baterias após serem descartadas nos pontos de coleta?',
     description: 'Após o descarte em pontos de coleta, as pilhas e baterias são enviadas para centros de reciclagem, onde são separadas e tratadas para extrair metais e outros materiais reutilizáveis. O processo ajuda a reduzir a quantidade de resíduos perigosos e permite o reaproveitamento de materiais.',
   },
@@ -23,7 +23,7 @@ const slides = [
     key: '3',
     title: 'Sustentabilidade',
     titleColor: '#038510',
-    image: require('../../assets/sustentabilidade3.png'),
+    image: require('../../assets/image/sustentabilidade/sustentabilidade3.png'),
     buttonText: 'Quais são os impactos ambientais do descarte incorreto de pilhas e baterias?',
     description: 'O descarte incorreto pode levar à liberação de metais pesados como mercúrio, chumbo e cádmio, que podem contaminar o solo e a água, prejudicando plantas, animais e seres humanos. Além disso, as substâncias químicas podem prejudicar o ecossistema e afetar a qualidade da água.',
   },
